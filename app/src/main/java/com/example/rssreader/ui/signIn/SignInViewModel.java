@@ -9,21 +9,26 @@ import com.example.rssreader.repository.Repository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignInViewModel extends AndroidViewModel {
-    private Repository repository;
+    private final Repository repository;
 
 
-    private MutableLiveData<FirebaseUser> mutableLiveData;
+    private final MutableLiveData<FirebaseUser> mutableLiveData;
 
-    public SignInViewModel(Application application){
+    public SignInViewModel(Application application) {
         super(application);
         repository = new Repository(application);
         mutableLiveData = repository.getUserMutableLiveData();
     }
 
 
-    public void login(String email, String password){
-        repository.login(email,password);
+    public void login(String email, String password) {
+        repository.login(email, password);
     }
+
+    public void firebaseAuthWithGoogle(String idToken) {
+        repository.firebaseAuthWithGoogle(idToken);
+    }
+
     public MutableLiveData<FirebaseUser> getMutableLiveData() {
         return mutableLiveData;
     }
