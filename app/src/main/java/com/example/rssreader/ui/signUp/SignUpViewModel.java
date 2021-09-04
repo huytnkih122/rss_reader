@@ -17,7 +17,7 @@ public class SignUpViewModel extends AndroidViewModel {
 
     public SignUpViewModel(Application application){
         super(application);
-        repository = new Repository(application);
+        repository = Repository.getInstance();
         mutableLiveData = repository.getUserMutableLiveData();
     }
 

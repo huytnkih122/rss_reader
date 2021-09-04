@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/read_rss_navigation"
+    app:startDestination="@id/listRssFragment">
+
+    <fragment
+        android:id="@+id/listRssFragment"
+        android:name="com.example.rssreader.ui.listRss.ListRssFragment"
+        android:label="fragment_list_rss"
+        tools:layout="@layout/fragment_list_rss" >
+        <action
+            android:id="@+id/action_listRssFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.rssreader.ui.readWeb.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <action
+            android:id="@+id/action_webViewFragment_to_listRssFragment"
+            app:destination="@id/listRssFragment" />
+    </fragment>
+</navigation>

@@ -1,4 +1,4 @@
-package com.example.rssreader.ui.search;
+package com.example.rssreader.ui.listRss;
 
 import android.app.Application;
 
@@ -12,28 +12,17 @@ import com.google.firebase.auth.FirebaseUser;
 import java.net.MalformedURLException;
 import java.util.List;
 
-public class SearchViewModel extends AndroidViewModel {
+public class ListRssViewModel extends AndroidViewModel {
     private final Repository repository;
-    private  MutableLiveData<List<RssItem>> rssItems;
+    private MutableLiveData<List<RssItem>> rssItems;
     public MutableLiveData<List<RssItem>> getRssItems() {
         return rssItems;
     }
 
-    private MutableLiveData<FirebaseUser> mutableLiveData;
-    public SearchViewModel(Application application) {
+    public ListRssViewModel(Application application) {
         super(application);
         repository = Repository.getInstance();
-        mutableLiveData = repository.getUserMutableLiveData();
         rssItems = repository.getListRssItemMutableLiveData();
-    }
-
-
-    public void loadRssItems(String url) {
-        try {
-            repository.fetchRSSData(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
     }
 
 }

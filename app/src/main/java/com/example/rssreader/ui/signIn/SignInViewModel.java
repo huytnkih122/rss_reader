@@ -16,7 +16,7 @@ public class SignInViewModel extends AndroidViewModel {
 
     public SignInViewModel(Application application) {
         super(application);
-        repository = new Repository(application);
+        repository = Repository.getInstance();
         mutableLiveData = repository.getUserMutableLiveData();
     }
 

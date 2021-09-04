@@ -2,11 +2,11 @@ package com.example.rssreader.data;
 
 public class RssItem {
 
-    String title;
-    String link;
-    String pubDate;
-    String description;
-    String category;
+    public String title;
+    public String link;
+    public String pubDate;
+    public String description;
+    public String category;
 
     public RssItem(String title, String link, String pubDate, String description, String category) {
         this.title = title;
@@ -14,5 +14,8 @@ public class RssItem {
         this.pubDate = pubDate;
         this.description = description;
         this.category = category;
+    }
+
+    public RssItem() {
     }
 }

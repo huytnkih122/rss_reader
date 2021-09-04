@@ -47,8 +47,8 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    Toast.makeText(getContext(), "Login Succesfull", Toast.LENGTH_LONG).show();
                     getActivity().finish();
+                    Toast.makeText(getContext(), "Login Succesfull", Toast.LENGTH_LONG).show();
                 }
             }
         });

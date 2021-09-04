@@ -1,40 +1,55 @@
 package com.example.rssreader.ui.search;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.rssreader.ReadRssActivity;
+import com.example.rssreader.data.RssItem;
 import com.example.rssreader.databinding.FragmentSearchBinding;
+
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
-    private SearchViewModel searchViewModel;
+    private SearchViewModel viewModel;
     private FragmentSearchBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        searchViewModel =
-                new ViewModelProvider(this).get(SearchViewModel.class);
 
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        binding.searchUrl.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View v) {
+                viewModel.loadRssItems("https://vnexpress.net/rss/the-gioi.rss");
+
             }
         });
 
+        viewModel.getRssItems().observe(getViewLifecycleOwner(), new Observer<List<RssItem>>() {
+            @Override
+            public void onChanged(List<RssItem> rssItems) {
+                for(int i = 0; i < rssItems.size() ; i++)
+                    Log.i("MYTAG", rssItems.get(i).title);
+                if(rssItems != null) {
+                    Intent intent = new Intent(getActivity(), ReadRssActivity.class);
+                    startActivity(intent);
+
+                }
+            }
+        });
         return root;
     }
 

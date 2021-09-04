@@ -19,10 +19,13 @@ public class AccountViewModel extends AndroidViewModel {
 
     public AccountViewModel(Application application){
         super(application);
-        repository = new Repository(application);
+        repository = Repository.getInstance();
         mutableLiveData = repository.getUserMutableLiveData();
     }
 
+    public void signOut(){
+        repository.signOut();
+    }
 
     public MutableLiveData<FirebaseUser> getMutableLiveData() {
         return mutableLiveData;

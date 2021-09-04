@@ -48,16 +48,16 @@ public class AccountFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
-//        accountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        viewModel.getMutableLiveData().observe(getViewLifecycleOwner(), new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                Toast.makeText(getContext(), "User CHanged State", Toast.LENGTH_LONG).show();
+            }
+        });
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                viewModel.signOut();
             }
         });
         if (user== null) binding.button.setVisibility(View.VISIBLE);

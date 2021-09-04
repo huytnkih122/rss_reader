@@ -18,7 +18,7 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<FirebaseUser> mutableLiveData;
 
     public LoginViewModel(Application application){
-       repository = new Repository(application);
+        repository = Repository.getInstance();
        mutableLiveData = repository.getUserMutableLiveData();
     }
 
