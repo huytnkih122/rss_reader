@@ -4,6 +4,7 @@
     <string name="title_history">History</string>
     <string name="title_account">Account</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_read_rss">ReadRssActivity</string>
     <string name="title_activity_signup">SignUpActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

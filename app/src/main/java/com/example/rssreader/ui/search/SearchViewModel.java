@@ -5,8 +5,10 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.rssreader.data.RssInfo;
 import com.example.rssreader.data.RssItem;
 import com.example.rssreader.repository.Repository;
+import com.example.rssreader.ui.history.HistoryItem;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.net.MalformedURLException;
@@ -14,9 +16,10 @@ import java.util.List;
 
 public class SearchViewModel extends AndroidViewModel {
     private final Repository repository;
-    private  MutableLiveData<List<RssItem>> rssItems;
-    public MutableLiveData<List<RssItem>> getRssItems() {
-        return rssItems;
+    private  MutableLiveData<RssInfo> rssInfo;
+    public Boolean openFragment;
+    public MutableLiveData<RssInfo> getRssInfo() {
+        return rssInfo;
     }
 
     private MutableLiveData<FirebaseUser> mutableLiveData;
@@ -24,10 +27,9 @@ public class SearchViewModel extends AndroidViewModel {
         super(application);
         repository = Repository.getInstance();
         mutableLiveData = repository.getUserMutableLiveData();
-        rssItems = repository.getListRssItemMutableLiveData();
+        rssInfo = repository.getRssInfoMutableLiveData();
+        openFragment = false;
     }
-
-
     public void loadRssItems(String url) {
         try {
             repository.fetchRSSData(url);
@@ -35,5 +37,13 @@ public class SearchViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
     }
+
+    public void saveHistory(HistoryItem item){
+        repository.addHistoryItem(item);
+    }
+    public void loadData(){
+        repository.loadData();
+    }
+
 
 }

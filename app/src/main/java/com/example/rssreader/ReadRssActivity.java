@@ -1,14 +1,23 @@
 package com.example.rssreader;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
-public class ReadRssActivity extends AppCompatActivity {
+import com.example.rssreader.databinding.ActivityLoginBinding;
+import com.example.rssreader.databinding.ActivityReadRssBinding;
 
+public class ReadRssActivity extends AppCompatActivity {
+    private ActivityReadRssBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read_rss);
+        binding = ActivityReadRssBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
+
+
 }
+
+

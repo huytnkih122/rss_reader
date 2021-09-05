@@ -12,11 +12,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    static final int RC_SIGN_IN = 120;
-    static final String TAG = "MyTag";
-    private GoogleSignInClient googleSignInClient;
+
     private ActivityLoginBinding binding;
-    private FirebaseAuth mAuth;
+
 
 
     @Override
