@@ -18,8 +18,8 @@ public class ListRssAdapter extends  RecyclerView.Adapter<ListRssViewHolder> {
 
     private List<RssItem> rssItems;
     private Context context;
-    private ItemClickListener listener;
-    public ListRssAdapter(List<RssItem> rssItems, ItemClickListener listener) {
+    private ItemRssClickListener listener;
+    public ListRssAdapter(List<RssItem> rssItems, ItemRssClickListener listener) {
         this.rssItems = rssItems;
         this.listener = listener;
     }

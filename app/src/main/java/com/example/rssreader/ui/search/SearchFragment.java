@@ -36,13 +36,14 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        binding.textUrlSearch.setText("https://tinhte.vn/rss");
+        binding.textUrlSearch.setText("https://thanhnien.vn/video/thoi-su.rss");
         binding.searchUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.loadRssItems(binding.textUrlSearch.getText().toString());
                 viewModel.openFragment = true;
-                viewModel.loadData();
+                Intent intent = new Intent(getActivity(), ReadRssActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -50,13 +51,9 @@ public class SearchFragment extends Fragment {
             @Override
             public void onChanged(RssInfo rssInfo) {
                 if (viewModel.openFragment == true) {
-
                     Date currentTime = Calendar.getInstance().getTime();
-                    viewModel.saveHistory(new HistoryItem(rssInfo.getTitle(), binding.textUrlSearch.getText().toString(), currentTime.getTime()));
 
-                    Intent intent = new Intent(getActivity(), ReadRssActivity.class);
-                    startActivity(intent);
-
+                    viewModel.saveHistory(new HistoryItem(rssInfo.getTitle(), binding.textUrlSearch.getText().toString(), currentTime.getTime(), rssInfo.getLogo()));
                     viewModel.openFragment = false;
                 }
             }

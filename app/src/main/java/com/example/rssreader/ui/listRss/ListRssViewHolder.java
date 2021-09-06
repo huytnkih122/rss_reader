@@ -27,7 +27,7 @@ public class ListRssViewHolder extends RecyclerView.ViewHolder {
         );
     }
 
-    public void bind(RssItem item, ItemClickListener listener) {
+    public void bind(RssItem item, ItemRssClickListener listener) {
         title.setText(item.getTitle());
         actor.setText(item.getAuthor());
         date.setText(item.getPubDate());

@@ -1,6 +1,5 @@
 package com.example.rssreader.ui.listRss;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.example.rssreader.R;
 import com.example.rssreader.data.RssInfo;
 import com.example.rssreader.data.RssItem;
 import com.example.rssreader.databinding.FragmentListRssBinding;
+import com.example.rssreader.ui.history.HistoryItem;
 
 public class ListRssFragment extends Fragment {
     private FragmentListRssBinding binding;
@@ -38,7 +38,7 @@ public class ListRssFragment extends Fragment {
             @Override
             public void onChanged(RssInfo rssInfo) {
                 if (rssInfo!=null){
-                    ListRssAdapter adapter = new ListRssAdapter(viewModel.getRssInfo().getValue().getRssItems(), new ItemClickListener() {
+                    ListRssAdapter adapter = new ListRssAdapter(viewModel.getRssInfo().getValue().getRssItems(), new ItemRssClickListener() {
                         @Override
                         public void OnClick(RssItem item) {
                             Bundle bundle = new Bundle();

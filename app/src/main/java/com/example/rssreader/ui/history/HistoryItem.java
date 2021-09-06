@@ -2,6 +2,27 @@ package com.example.rssreader.ui.history;
 
 public class HistoryItem {
     String title;
+    String logo;
+    String url;
+    Long date;
+
+    public HistoryItem(String title, String url, Long date, String logo) {
+        this.title = title;
+        this.url = url;
+        this.date = date;
+        this.logo = logo;
+    }
+
+    public HistoryItem() {
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public String getTitle() {
         return title;
@@ -26,16 +47,4 @@ public class HistoryItem {
     public void setDate(Long date) {
         this.date = date;
     }
-
-    public HistoryItem(String title, String url, Long date) {
-        this.title = title;
-        this.url = url;
-        this.date = date;
-    }
-
-    public HistoryItem() {
-    }
-
-    String url;
-    Long date;
 }

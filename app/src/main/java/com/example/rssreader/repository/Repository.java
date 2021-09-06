@@ -21,6 +21,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +30,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -40,17 +44,22 @@ public class Repository {
     private final MutableLiveData<RssInfo> rssInfoMutableLiveData;
     private final DatabaseReference database;
     public AsyncResponse delegate = null;
-
+    private final MutableLiveData<List<HistoryItem>> historyItemsMutableLiveData;
 
     public Repository() {
         firebaseAuth = FirebaseAuth.getInstance();
         this.userMutableLiveData = new MutableLiveData<>();
         this.rssInfoMutableLiveData = new MutableLiveData<RssInfo>();
         database = FirebaseDatabase.getInstance("https://rssreader-d5d85-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+        historyItemsMutableLiveData = new MutableLiveData<>();
     }
 
     public static Repository getInstance() {
         return INSTANCE;
+    }
+
+    public MutableLiveData<List<HistoryItem>> getHistoryItemsMutableLiveData() {
+        return historyItemsMutableLiveData;
     }
 
     public MutableLiveData<RssInfo> getRssInfoMutableLiveData() {
@@ -146,18 +155,29 @@ public class Repository {
         }
     }
 
-    public void loadData(){
-        database.child("users").child(this.firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
+    public void loadData() {
+        if (this.firebaseAuth.getCurrentUser() != null) {
+            ArrayList<HistoryItem> list = new ArrayList<>();
+            Query query = database.child("data").child(this.firebaseAuth.getCurrentUser().getUid());
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        list.add(dataSnapshot.getValue(HistoryItem.class));
+                        Log.i("MYTAG", dataSnapshot.getValue(HistoryItem.class).getUrl());
+                    }
+                    historyItemsMutableLiveData.postValue(list);
+
                 }
-                else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
                 }
-            }
-        });
+            });
+        }
+
+
     }
 
     public interface AsyncResponse {

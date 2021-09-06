@@ -4,6 +4,6 @@ import com.example.rssreader.data.RssItem;
 
 import java.util.List;
 
-interface ItemClickListener {
+public interface ItemRssClickListener {
     void OnClick(RssItem item);
 }

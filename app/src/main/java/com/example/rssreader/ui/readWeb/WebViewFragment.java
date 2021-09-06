@@ -28,8 +28,8 @@ public class WebViewFragment extends Fragment {
         binding = FragmentWebViewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.webView.getSettings().setJavaScriptEnabled(true);
         binding.webView.loadUrl(getArguments().getString("link"));
+
         return root;
 
     }

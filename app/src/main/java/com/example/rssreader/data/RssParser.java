@@ -30,7 +30,7 @@ public class RssParser {
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(inputStream, null);
             int eventType = parser.getEventType();
-
+            boolean isImage = false;
             for (boolean foundItem = false; eventType != XmlPullParser.END_DOCUMENT; eventType = parser.next()) {
                 String tagname = parser.getName();
                 switch (eventType) {
@@ -38,6 +38,9 @@ public class RssParser {
                         if (tagname.equals( "item")) {
                             foundItem = true;
                             this.rssItem = new RssItem();
+                        }
+                       if (tagname.equals( "image")) {
+                            isImage = true;
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -48,11 +51,15 @@ public class RssParser {
                                 this.rssInfo.addItem(item);
                             }
                             foundItem = false;
-                        }else if (!foundItem && tagname.equals( "title")) {
+                        }else if (!isImage &&!foundItem && tagname.equals( "title")) {
                             rssInfo.setTitle(String.valueOf(this.text));
+                        }else if (isImage && tagname.equals( "url")) {
+                            rssInfo.setLogo(String.valueOf(this.text));
+                        }else if (isImage && tagname.equals( "image")) {
+                            isImage = false;
                         } else if (foundItem && tagname.equals( "title")) {
                             this.rssItem.setTitle(String.valueOf(this.text));
-                        } else if (foundItem && tagname.equals( "link")) {
+                        } else if (foundItem && tagname.equals( "link") && rssItem.getLink() == null ) {
                             this.rssItem.setLink(String.valueOf(this.text));;
                         } else if (foundItem && tagname.equals( "pubDate")) {
                             this.rssItem.setPubDate(String.valueOf(this.text));
@@ -66,8 +73,8 @@ public class RssParser {
                                 String temp = this.text.substring(start);
                                 String stringStart = temp.substring(temp.indexOf('"')+1);
                                 int end = stringStart.indexOf('"');
-                                String image = stringStart.substring(0,end);
-                                this.rssItem.setImage(image);
+                                String imageUrl = stringStart.substring(0,end);
+                                this.rssItem.setImage(imageUrl);
                             }
                         }
                         break;

@@ -1,19 +1,43 @@
 package com.example.rssreader.ui.history;
 
-import androidx.lifecycle.LiveData;
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class HistoryViewModel extends ViewModel {
+import com.example.rssreader.repository.Repository;
 
-    private MutableLiveData<String> mText;
+import java.net.MalformedURLException;
+import java.util.List;
 
-    public HistoryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+public class HistoryViewModel extends AndroidViewModel {
+    private final Repository repository;
+
+    public MutableLiveData<List<HistoryItem>> getHistoryItems() {
+        return historyItems;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    private MutableLiveData<List<HistoryItem>> historyItems;
+
+
+    public HistoryViewModel(Application application) {
+        super(application);
+        repository = Repository.getInstance();
+        historyItems = repository.getHistoryItemsMutableLiveData();
+    }
+
+    public void loadData(){
+        repository.loadData();
+    }
+    public void loadRssItems(String url) {
+        try {
+            repository.fetchRSSData(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveHistory(HistoryItem item){
+        repository.addHistoryItem(item);
     }
 }

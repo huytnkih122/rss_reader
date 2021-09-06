@@ -41,9 +41,4 @@ public class SearchViewModel extends AndroidViewModel {
     public void saveHistory(HistoryItem item){
         repository.addHistoryItem(item);
     }
-    public void loadData(){
-        repository.loadData();
-    }
-
-
 }

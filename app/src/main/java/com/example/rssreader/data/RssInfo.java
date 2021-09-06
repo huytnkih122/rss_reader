@@ -4,11 +4,21 @@ import java.util.ArrayList;
 
 public class RssInfo {
     String title;
+    String logo;
     ArrayList<RssItem> rssItems;
+
     public RssInfo() {
         rssItems = new ArrayList<RssItem>();
+        logo = "";
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public String getTitle() {
         return title;
