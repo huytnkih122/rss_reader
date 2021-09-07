@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_signup"
     tools:context=".ui.listRss.ListRssFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/title_rss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
         android:textSize="20sp"
+
+        android:background="#4DFFFFFF"
         android:textStyle="bold"
         android:textAlignment="center"
-
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +28,9 @@
         android:id="@+id/listRssItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:background="#4D000000"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

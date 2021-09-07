@@ -45,10 +45,10 @@ public class SignUpFragment extends Fragment {
 
         binding = FragmentSignUpBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        binding.register.setOnClickListener(new View.OnClickListener() {
+        binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.register(binding.username.getText().toString(), binding.password1.getText().toString());
+                viewModel.register(binding.usernameSignUp.getText().toString(), binding.passwordSignUp.getText().toString());
             }
         });
 
@@ -60,4 +60,6 @@ public class SignUpFragment extends Fragment {
         });
         return root;
     }
+
+
 }

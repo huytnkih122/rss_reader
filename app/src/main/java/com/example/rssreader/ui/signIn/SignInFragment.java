@@ -65,19 +65,19 @@ public class SignInFragment extends Fragment {
     }
 
     private void InitDefaultButton() {
-        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
+        binding.signUpButtonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(getView()).navigate(R.id.action_signInFragment_to_signUpFragment);
             }
         });
-        binding.signInButton.setOnClickListener(new View.OnClickListener() {
+        binding.signInButtonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.login(binding.username.getText().toString(), binding.password1.getText().toString());
+                viewModel.login(binding.usenameSignIn.getText().toString(), binding.passwordSignIn.getText().toString());
             }
         });
-        binding.signInWithGoogle.setOnClickListener(new View.OnClickListener() {
+        binding.signUpWithGoogleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signInWithGoogle();

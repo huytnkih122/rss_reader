@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -33,8 +34,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Executor;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import static android.content.ContentValues.TAG;
 
 public class Repository {
 
@@ -108,6 +112,20 @@ public class Repository {
                             updateUser();
                         } else {
                             Log.e("MYTAG", "Registration Failed" + task.getException().getMessage());
+                        }
+                    }
+                });
+    }
+
+    private void handleFacebookAccessToken(String token) {
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            updateUser();
                         }
                     }
                 });
