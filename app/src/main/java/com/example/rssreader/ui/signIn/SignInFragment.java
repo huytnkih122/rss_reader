@@ -1,13 +1,16 @@
 package com.example.rssreader.ui.signIn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -48,6 +51,7 @@ public class SignInFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
                     getActivity().finish();
+                    binding.progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "Login Succesfull", Toast.LENGTH_LONG).show();
                 }
             }
@@ -64,8 +68,9 @@ public class SignInFragment extends Fragment {
         return root;
     }
 
+
     private void InitDefaultButton() {
-        binding.signUpButtonSignIn.setOnClickListener(new View.OnClickListener() {
+        binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(getView()).navigate(R.id.action_signInFragment_to_signUpFragment);
@@ -74,13 +79,32 @@ public class SignInFragment extends Fragment {
         binding.signInButtonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.login(binding.usenameSignIn.getText().toString(), binding.passwordSignIn.getText().toString());
+                binding.progressBar.setVisibility(View.VISIBLE);
+                if (binding.usernameSignIn.getText().toString().length() > 0 && binding.passwordSignIn.getText().toString().length() > 0)
+                    viewModel.login(binding.usernameSignIn.getText().toString(), binding.passwordSignIn.getText().toString());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (viewModel.getMutableLiveData().getValue() == null) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            showDialog();
+                        }
+                    }
+                }, 2000);
+
             }
         });
-        binding.signUpWithGoogleButton.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSignInWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signInWithGoogle();
+            }
+        });
+
+        binding.backButtonSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
     }
@@ -105,6 +129,25 @@ public class SignInFragment extends Fragment {
                 Log.w(TAG, "Google sign in failed", e);
             }
         }
+    }
+
+    private void showDialog() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getResources().getString(R.string.wrong_info))
+                .setMessage(getResources().getString(R.string.re_enter))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        binding.passwordSignIn.setText("");
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 

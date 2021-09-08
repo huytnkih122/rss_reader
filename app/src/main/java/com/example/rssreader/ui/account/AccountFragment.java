@@ -23,7 +23,6 @@ public class AccountFragment extends Fragment {
 
     private AccountViewModel viewModel;
     private FragmentAccountBinding binding;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class AccountFragment extends Fragment {
         viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
-                Toast.makeText(getContext(), "CREATED", Toast.LENGTH_LONG).show();
                 UpdateUI();
             }
         });
@@ -46,18 +44,17 @@ public class AccountFragment extends Fragment {
         View root = binding.getRoot();
 
         UpdateUI();
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+        binding.logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
         });
-        binding.signOut.setOnClickListener(new View.OnClickListener() {
+        binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.signOut();
-                UpdateUI();
             }
         });
 
@@ -66,10 +63,11 @@ public class AccountFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         UpdateUI();
     }
+
 
     @Override
     public void onDestroyView() {
@@ -78,13 +76,16 @@ public class AccountFragment extends Fragment {
     }
 
     private void UpdateUI() {
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+        FirebaseUser user = viewModel.getUserMutableLiveData().getValue();
+        if (user == null) {
             binding.infoLayout.setVisibility(View.GONE);
-            binding.blankLayout.setVisibility(View.VISIBLE);
+            binding.blackLayout.setVisibility(View.VISIBLE);
         } else {
-            binding.name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-            binding.email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-            if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null)
+            binding.infoLayout.setVisibility(View.VISIBLE);
+            binding.blackLayout.setVisibility(View.GONE);
+            binding.name.setText(user.getDisplayName());
+            binding.email.setText(user.getEmail());
+            if (user.getPhotoUrl() != null)
                 Picasso.get().load(user.getPhotoUrl()).into(binding.avatar);
         }
     }

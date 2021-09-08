@@ -17,7 +17,7 @@ public class HistoryViewModel extends AndroidViewModel {
         return historyItems;
     }
 
-    private MutableLiveData<List<HistoryItem>> historyItems;
+    private final MutableLiveData<List<HistoryItem>> historyItems;
 
 
     public HistoryViewModel(Application application) {

@@ -10,9 +10,9 @@
         android:id="@+id/title_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="History"
-        android:paddingVertical="10dp"
-        android:textSize="25sp"
+        android:text="@string/title_history"
+        android:paddingVertical="@dimen/title_padding_vertical"
+        android:textSize="@dimen/title_text_size"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textAlignment="center"
@@ -22,12 +22,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listHistoryItem"
+        android:id="@+id/list_history"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:background="#4D000000"
-        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

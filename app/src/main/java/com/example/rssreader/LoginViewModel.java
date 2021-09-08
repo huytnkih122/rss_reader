@@ -12,10 +12,10 @@ import com.example.rssreader.repository.Repository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
-    private Repository repository;
+    private final Repository repository;
 
 
-    private MutableLiveData<FirebaseUser> mutableLiveData;
+    private final MutableLiveData<FirebaseUser> mutableLiveData;
 
     public LoginViewModel(Application application){
         repository = Repository.getInstance();

@@ -16,9 +16,9 @@ import java.util.List;
 
 public class ListRssAdapter extends  RecyclerView.Adapter<ListRssViewHolder> {
 
-    private List<RssItem> rssItems;
+    private final List<RssItem> rssItems;
     private Context context;
-    private ItemRssClickListener listener;
+    private final ItemRssClickListener listener;
     public ListRssAdapter(List<RssItem> rssItems, ItemRssClickListener listener) {
         this.rssItems = rssItems;
         this.listener = listener;

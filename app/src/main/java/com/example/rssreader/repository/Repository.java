@@ -45,14 +45,15 @@ public class Repository {
     private static final Repository INSTANCE = new Repository();
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
     private final FirebaseAuth firebaseAuth;
-    private final MutableLiveData<RssInfo> rssInfoMutableLiveData;
+    private MutableLiveData<RssInfo> rssInfoMutableLiveData;
     private final DatabaseReference database;
     public AsyncResponse delegate = null;
-    private final MutableLiveData<List<HistoryItem>> historyItemsMutableLiveData;
+    private MutableLiveData<List<HistoryItem>> historyItemsMutableLiveData;
 
     public Repository() {
         firebaseAuth = FirebaseAuth.getInstance();
         this.userMutableLiveData = new MutableLiveData<>();
+        updateUser();
         this.rssInfoMutableLiveData = new MutableLiveData<RssInfo>();
         database = FirebaseDatabase.getInstance("https://rssreader-d5d85-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
         historyItemsMutableLiveData = new MutableLiveData<>();
@@ -65,7 +66,9 @@ public class Repository {
     public MutableLiveData<List<HistoryItem>> getHistoryItemsMutableLiveData() {
         return historyItemsMutableLiveData;
     }
-
+    public void resetRssInfo(){
+        this.rssInfoMutableLiveData = new MutableLiveData<RssInfo>();
+    }
     public MutableLiveData<RssInfo> getRssInfoMutableLiveData() {
         return rssInfoMutableLiveData;
     }
@@ -117,22 +120,10 @@ public class Repository {
                 });
     }
 
-    private void handleFacebookAccessToken(String token) {
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token);
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            updateUser();
-                        }
-                    }
-                });
-    }
-
     public void signOut() {
         this.firebaseAuth.signOut();
+        this.rssInfoMutableLiveData = new MutableLiveData<RssInfo>();
+        historyItemsMutableLiveData = new MutableLiveData<>();
         updateUser();
     }
 
@@ -241,8 +232,6 @@ public class Repository {
             }
         }
     }
-
-
 }
 
 

@@ -7,83 +7,26 @@
     android:background="@drawable/bg_signup"
     tools:context=".ui.signUp.SignUpFragment">
 
-<!--    <EditText-->
-<!--        android:id="@+id/username"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="3dp"-->
-<!--        android:layout_marginTop="63dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Username"-->
-<!--        android:inputType="textPersonName"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/nameuser"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/password1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="3dp"-->
-<!--        android:layout_marginTop="240dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Password"-->
-<!--        android:inputType="textPassword"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/password_confirm"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/password_confirm"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="68dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Password"-->
-<!--        android:inputType="textPassword"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/password1" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/nameuser"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="2dp"-->
-<!--        android:layout_marginBottom="39dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Name"-->
-<!--        android:inputType="textPassword"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/password1"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/password1" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/register"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="43dp"-->
-<!--        android:layout_marginTop="62dp"-->
-<!--        android:text="Register"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/password_confirm"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/password_confirm" />-->
 
     <ImageView
-        android:id="@+id/backbutton"
-        android:layout_width="77dp"
-        android:layout_height="40dp"
+        android:id="@+id/back_button_sign_up"
+        android:layout_width="@dimen/sign_in_back_button_width"
+        android:layout_height="@dimen/sign_in_back_button_height"
+        android:layout_marginStart="@dimen/sign_in_back_button_margin_start"
+        android:layout_marginTop="@dimen/sign_in_back_button_margin_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
     <EditText
         android:id="@+id/username_sign_up"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="@dimen/sign_up_text_size"
+        android:layout_marginHorizontal="@dimen/sign_up_text_margin_horizontal"
         android:background="@drawable/input_bar"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textPersonName"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
+        android:paddingHorizontal="@dimen/sign_up_padding_horizontal"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,16 +38,14 @@
     <EditText
         android:id="@+id/password_sign_up"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="@dimen/sign_up_text_size"
+        android:layout_marginHorizontal="@dimen/sign_up_text_margin_horizontal"
+        android:layout_marginTop="@dimen/sign_up_padding_top"
         android:background="@drawable/input_bar"
         android:ems="10"
-        android:hint="Mật khẩu"
-        android:inputType="textPersonName"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="@dimen/sign_up_padding_horizontal"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -114,16 +55,14 @@
     <EditText
         android:id="@+id/confirm_password_sign_up"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="@dimen/sign_up_text_size"
+        android:layout_marginTop="@dimen/sign_up_padding_top"
+        android:layout_marginHorizontal="@dimen/sign_up_text_margin_horizontal"
         android:background="@drawable/input_bar"
         android:ems="10"
-        android:hint="Mật khẩu"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
+        android:paddingHorizontal="@dimen/sign_up_padding_horizontal"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,16 +71,16 @@
     <Button
         android:id="@+id/register_button"
         android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="@dimen/sign_up_button_register_size"
+        android:layout_marginTop="@dimen/sign_up_button_marhin_top"
+        android:layout_marginHorizontal="@dimen/sign_up_text_margin_horizontal"
         android:background="@drawable/radius_button"
-        android:text="Đăng Kí"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="12sp"
+        android:textSize="@dimen/button_register_text_size"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_password_sign_up" />
 

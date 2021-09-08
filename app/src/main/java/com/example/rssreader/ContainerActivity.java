@@ -13,13 +13,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ContainerActivity extends AppCompatActivity {
 
-    private ActivityContainerBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityContainerBinding.inflate(getLayoutInflater());
+        com.example.rssreader.databinding.ActivityContainerBinding binding = ActivityContainerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

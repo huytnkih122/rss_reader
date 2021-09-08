@@ -7,32 +7,43 @@
     tools:context=".ui.account.AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/infoLayout"
+        android:id="@+id/info_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="47dp"
+        <TextView
+            android:id="@+id/title_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_account"
+            android:textColor="@color/white"
+            android:paddingVertical="@dimen/title_padding_vertical"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/avt_size"
+            android:layout_height="@dimen/avt_size"
+            android:layout_marginTop="@dimen/avt_margin_top"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_account"
             tools:src="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/avt_margin_bottom"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,13 +62,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/account_text_size"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="20dp"
-                        android:paddingEnd="10dp"
-                        android:text="Name:"
+                        android:layout_marginVertical="@dimen/account_text_margin_vertical"
+                        android:paddingEnd="@dimen/account_text_padding_end"
+                        android:text="@string/prompt_name"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/account_text_sizesp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -65,9 +76,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="20dp"
-                        android:text="Ly Dang Huy"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/account_text_sizesp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -78,40 +88,41 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/account_text_size"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="20dp"
-                        android:paddingEnd="10dp"
-                        android:text="Email:"
+                        android:layout_marginVertical="@dimen/account_text_margin_vertical"
+                        android:paddingEnd="@dimen/account_text_padding_end"
+                        android:text="@string/prompt_email"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/account_text_sizesp"
                         android:textStyle="bold" />
 
                     <TextView
+
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="20dp"
+                        android:layout_marginVertical="@dimen/account_text_margin_vertical"
                         android:text="lydanghuy772000@gmail.com"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/account_text_sizesp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
 
             </LinearLayout>
             <Button
-                android:id="@+id/sign_out"
+                android:id="@+id/sign_out_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Đăng xuất" />
+                android:layout_marginTop="@dimen/sign_out_button_margin_top"
+                android:text="@string/sign_out" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/blank_layout"
+        android:id="@+id/black_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
@@ -121,10 +132,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/log_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng nhập"
+            android:text="@string/sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

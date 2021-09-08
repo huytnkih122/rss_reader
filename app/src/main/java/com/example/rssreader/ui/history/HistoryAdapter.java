@@ -19,9 +19,9 @@ import java.util.List;
 
 public class HistoryAdapter extends  RecyclerView.Adapter<HistoryViewHolder> {
 
-    private List<HistoryItem> historyItems;
+    private final List<HistoryItem> historyItems;
     private Context context;
-    private HistoryItemClickListener listener;
+    private final HistoryItemClickListener listener;
     public HistoryAdapter(List<HistoryItem> historyItems, HistoryItemClickListener listener) {
         Collections.sort(historyItems, new Comparator<HistoryItem>() {
             @Override

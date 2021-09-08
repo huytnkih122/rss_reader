@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ListRssViewModel extends AndroidViewModel {
     private final Repository repository;
-    private MutableLiveData<RssInfo> rssInfo;
+    private final MutableLiveData<RssInfo> rssInfo;
     public MutableLiveData<RssInfo> getRssInfo() {
         return rssInfo;
     }
@@ -25,6 +25,9 @@ public class ListRssViewModel extends AndroidViewModel {
         repository = Repository.getInstance();
         rssInfo = repository.getRssInfoMutableLiveData();
         openFragment = false;
+    }
+    public void resetListRss(){
+        repository.resetRssInfo();
     }
 
 }

@@ -10,10 +10,10 @@ import com.example.rssreader.repository.Repository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpViewModel extends AndroidViewModel {
-    private Repository repository;
+    private final Repository repository;
 
 
-    private MutableLiveData<FirebaseUser> mutableLiveData;
+    private final MutableLiveData<FirebaseUser> mutableLiveData;
 
     public SignUpViewModel(Application application){
         super(application);

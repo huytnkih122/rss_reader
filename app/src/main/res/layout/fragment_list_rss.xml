@@ -11,13 +11,13 @@
         android:id="@+id/title_rss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:textSize="20sp"
-
         android:background="#4DFFFFFF"
-        android:textStyle="bold"
+        android:paddingVertical="@dimen/list_rss_padding_vertical"
+
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="@dimen/list_rss_title_text_size"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,15 +25,27 @@
     </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listRssItem"
+        android:id="@+id/list_rss"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#4D000000"
-        android:paddingTop="10dp"
-        android:paddingHorizontal="10dp"
+        android:background="@color/list_rss_background_color"
+        android:paddingHorizontal="@dimen/list_rsspadding_horizontal"
+        android:paddingTop="@dimen/list_rss_padding_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_rss"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/progressbar_size"
+        android:layout_height="@dimen/progressbar_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_rss" />
+        app:layout_constraintTop_toTopOf="@+id/title_rss" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

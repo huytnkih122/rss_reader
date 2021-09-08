@@ -16,13 +16,13 @@ import java.util.List;
 
 public class SearchViewModel extends AndroidViewModel {
     private final Repository repository;
-    private  MutableLiveData<RssInfo> rssInfo;
+    private final MutableLiveData<RssInfo> rssInfo;
     public Boolean openFragment;
     public MutableLiveData<RssInfo> getRssInfo() {
         return rssInfo;
     }
 
-    private MutableLiveData<FirebaseUser> mutableLiveData;
+    private final MutableLiveData<FirebaseUser> mutableLiveData;
     public SearchViewModel(Application application) {
         super(application);
         repository = Repository.getInstance();

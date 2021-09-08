@@ -68,8 +68,8 @@ public class HistoryFragment extends Fragment {
                             startActivity(intent);
                         }
                     });
-                    binding.listHistoryItem.setAdapter(adapter);
-                    binding.listHistoryItem.setLayoutManager(new LinearLayoutManager(requireContext()));
+                    binding.listHistory.setAdapter(adapter);
+                    binding.listHistory.setLayoutManager(new LinearLayoutManager(requireContext()));
                 }
             }
         });
